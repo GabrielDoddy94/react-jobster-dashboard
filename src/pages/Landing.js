@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import main from "../assets/images/main.svg";
 
 import Wrapper from "../assets/wrappers/LandingPage";
@@ -20,7 +22,9 @@ const Landing = () => {
             meggings poutine sriracha four loko distillery mlkshk put a bird on
             it. Tacos kickstarter actually ethical cornhole.
           </p>
-          <button className="btn btn-hero">Login/Register</button>
+          <Link to="/register" className="btn btn-hero">
+            Login/Register
+          </Link>
         </div>
 
         <img src={main} alt="job hunt" className="img main-img" />
