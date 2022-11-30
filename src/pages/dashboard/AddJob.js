@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { handleChange } from "../../features/job/jobSlice";
 
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 import { FormRow, FormRowSelect } from "../../components";
@@ -17,6 +18,7 @@ const AddJob = () => {
     isEditing,
     editJobId,
   } = useSelector(store => store.job);
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -29,6 +31,8 @@ const AddJob = () => {
 
   const handleJobInput = e => {
     const { name, value } = e.target;
+
+    dispatch(handleChange({ name, value }));
   };
 
   return (
