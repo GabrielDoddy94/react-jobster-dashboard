@@ -5,6 +5,7 @@ import {
   handleChange,
   clearValues,
   createJob,
+  editJob,
 } from "../../features/job/jobSlice";
 
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
@@ -34,6 +35,16 @@ const AddJob = () => {
       return;
     }
 
+    if (isEditing) {
+      dispatch(
+        editJob({
+          jobId: editJobId,
+          job: { position, company, jobLocation, jobType, status },
+        })
+      );
+      return;
+    }
+
     dispatch(createJob({ position, company, jobLocation, jobType, status }));
   };
 
@@ -44,8 +55,10 @@ const AddJob = () => {
   };
 
   useEffect(() => {
-    dispatch(handleChange({ name: "jobLocation", value: user.location }));
-  }, [dispatch, user.location]);
+    if (!isEditing) {
+      dispatch(handleChange({ name: "jobLocation", value: user.location }));
+    }
+  }, [isEditing, dispatch, user.location]);
 
   return (
     <Wrapper>
