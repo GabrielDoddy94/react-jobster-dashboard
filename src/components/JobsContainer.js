@@ -8,14 +8,22 @@ import Loading from "./Loading";
 import PageBtnContainer from "./PageBtnContainer";
 
 const JobsContainer = () => {
-  const { jobs, isLoading, page, totalJobs, numOfPages } = useSelector(
-    store => store.allJobs
-  );
+  const {
+    jobs,
+    isLoading,
+    page,
+    search,
+    searchStatus,
+    searchType,
+    sort,
+    totalJobs,
+    numOfPages,
+  } = useSelector(store => store.allJobs);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllJobs());
-  }, [dispatch]);
+  }, [dispatch, page, search, searchStatus, searchType, sort]);
 
   if (isLoading) {
     return <Loading />;
